@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haytham Kitchen | Restaurant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --ink: #181611;
+            --leaf: #1f5f45;
+            --gold: #c28a2e;
+            --paper: #fbfaf6;
+            --clay: #b65f35;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--paper);
+            font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        }
+
+        .hero {
+            min-height: 92vh;
+            background:
+                linear-gradient(90deg, rgba(16, 15, 11, .78), rgba(16, 15, 11, .38) 48%, rgba(16, 15, 11, .15)),
+                url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=85&w=1800") center/cover;
+        }
+
+        .section-band { background: #fffdf8; }
+        .menu-card { transition: transform .25s ease, box-shadow .25s ease; }
+        .menu-card:hover { transform: translateY(-4px); box-shadow: 0 18px 42px rgba(24, 22, 17, .12); }
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -8px;
+            height: 2px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .25s ease;
+        }
+        .nav-link:hover::after { transform: scaleX(1); }
+
+        .floating-whatsapp {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            display: inline-flex;
+            width: 56px;
+            height: 56px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            color: #fff;
+            background: #25d366;
+            box-shadow: 0 16px 36px rgba(0, 0, 0, .2);
+            z-index: 50;
+        }
+
+        @media (max-width: 768px) {
+            .hero { min-height: 86vh; }
+        }
+    </style>
+</head>
+<body>
+    <header class="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-black/40 text-white backdrop-blur-md">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
+            <a href="#home" class="text-xl font-extrabold tracking-wide">Haytham Kitchen</a>
+            <div class="hidden items-center gap-8 text-sm font-semibold uppercase tracking-wide md:flex">
+                <a class="nav-link" href="#menu">Menu</a>
+                <a class="nav-link" href="#story">Story</a>
+                <a class="nav-link" href="#gallery">Gallery</a>
+                <a class="nav-link" href="#booking">Book</a>
+            </div>
+            <a href="tel:+94764356127" class="hidden items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-stone-950 md:inline-flex">
+                <i data-lucide="phone" class="h-4 w-4"></i>
+                Call Now
+            </a>
+            <button id="menuButton" class="rounded-full border border-white/40 p-2 md:hidden" aria-label="Open menu">
+                <i data-lucide="menu" class="h-5 w-5"></i>
+            </button>
+        </nav>
+        <div id="mobileMenu" class="hidden border-t border-white/10 bg-black/80 px-5 py-4 md:hidden">
+            <div class="flex flex-col gap-4 text-sm font-semibold uppercase tracking-wide">
+                <a href="#menu">Menu</a>
+                <a href="#story">Story</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#booking">Book a Table</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="home">
+        <section class="hero flex items-end">
+            <div class="mx-auto grid w-full max-w-7xl gap-10 px-5 pb-14 pt-32 text-white md:grid-cols-[1.1fr_.9fr] md:items-end md:pb-20">
+                <div>
+                    <p class="mb-4 inline-flex rounded-full border border-white/30 px-4 py-2 text-sm font-semibold backdrop-blur">Fresh Sri Lankan flavors, served daily</p>
+                    <h1 class="max-w-3xl text-5xl font-extrabold leading-tight md:text-7xl">Haytham Kitchen</h1>
+                    <p class="mt-5 max-w-2xl text-lg leading-8 text-white/80">
+                        A warm neighborhood restaurant for grilled seafood, fragrant rice, house curries, and slow evenings around the table.
+                    </p>
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <a href="#booking" class="inline-flex items-center gap-2 rounded-full bg-[var(--gold)] px-6 py-3 font-bold text-stone-950">
+                            <i data-lucide="calendar-check" class="h-5 w-5"></i>
+                            Reserve Table
+                        </a>
+                        <a href="#menu" class="inline-flex items-center gap-2 rounded-full border border-white/50 px-6 py-3 font-bold text-white backdrop-blur">
+                            <i data-lucide="utensils" class="h-5 w-5"></i>
+                            View Menu
+                        </a>
+                    </div>
+                </div>
+                <div class="grid gap-3 rounded-lg border border-white/20 bg-white/10 p-4 backdrop-blur-md">
+                    <div class="flex items-center justify-between border-b border-white/20 pb-3">
+                        <span class="text-sm uppercase tracking-widest text-white/70">Today</span>
+                        <span class="font-bold">11:00 AM - 10:30 PM</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-3 text-center">
+                        <div class="rounded-md bg-white/10 p-3">
+                            <i data-lucide="flame" class="mx-auto mb-2 h-5 w-5 text-[var(--gold)]"></i>
+                            <p class="text-xs font-bold uppercase">Grill</p>
+                        </div>
+                        <div class="rounded-md bg-white/10 p-3">
+                            <i data-lucide="leaf" class="mx-auto mb-2 h-5 w-5 text-[var(--gold)]"></i>
+                            <p class="text-xs font-bold uppercase">Fresh</p>
+                        </div>
+                        <div class="rounded-md bg-white/10 p-3">
+                            <i data-lucide="map-pin" class="mx-auto mb-2 h-5 w-5 text-[var(--gold)]"></i>
+                            <p class="text-xs font-bold uppercase">Kinniya</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="menu" class="section-band px-5 py-20">
+            <div class="mx-auto max-w-7xl">
+                <div class="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+                    <div>
+                        <p class="text-sm font-bold uppercase tracking-widest text-[var(--clay)]">House Favorites</p>
+                        <h2 class="mt-2 text-4xl font-extrabold md:text-5xl">Menu Highlights</h2>
+                    </div>
+                    <div class="flex flex-wrap gap-2" aria-label="Menu filters">
+                        <button class="filter rounded-full bg-[var(--ink)] px-5 py-2 text-sm font-bold text-white" data-filter="all">All</button>
+                        <button class="filter rounded-full border border-stone-300 px-5 py-2 text-sm font-bold" data-filter="mains">Mains</button>
+                        <button class="filter rounded-full border border-stone-300 px-5 py-2 text-sm font-bold" data-filter="drinks">Drinks</button>
+                        <button class="filter rounded-full border border-stone-300 px-5 py-2 text-sm font-bold" data-filter="desserts">Desserts</button>
+                    </div>
+                </div>
+                <div id="menuGrid" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3"></div>
+            </div>
+        </section>
+
+        <section id="story" class="grid bg-white md:grid-cols-2">
+            <div class="min-h-[440px] bg-[url('https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&q=85&w=1200')] bg-cover bg-center"></div>
+            <div class="flex items-center px-5 py-16 md:px-14 lg:px-20">
+                <div class="max-w-xl">
+                    <p class="text-sm font-bold uppercase tracking-widest text-[var(--clay)]">Our Story</p>
+                    <h2 class="mt-3 text-4xl font-extrabold leading-tight">Cooked with patience, plated with care.</h2>
+                    <p class="mt-5 leading-8 text-stone-600">
+                        Haytham Kitchen brings together coastal seafood, market vegetables, spice-rich marinades, and family-style hospitality. Every plate is made for the kind of meal that feels easy, generous, and memorable.
+                    </p>
+                    <div class="mt-8 grid gap-4 sm:grid-cols-3">
+                        <div>
+                            <p class="text-3xl font-extrabold text-[var(--leaf)]">25+</p>
+                            <p class="text-sm font-semibold text-stone-500">Signature dishes</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-extrabold text-[var(--leaf)]">4.8</p>
+                            <p class="text-sm font-semibold text-stone-500">Guest rating</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-extrabold text-[var(--leaf)]">7</p>
+                            <p class="text-sm font-semibold text-stone-500">Days open</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="px-5 py-20">
+            <div class="mx-auto max-w-7xl">
+                <div class="mb-10">
+                    <p class="text-sm font-bold uppercase tracking-widest text-[var(--clay)]">At the table</p>
+                    <h2 class="mt-2 text-4xl font-extrabold md:text-5xl">A Taste Before You Arrive</h2>
+                </div>
+                <div class="grid gap-4 md:grid-cols-4">
+                    <img class="h-72 w-full rounded-lg object-cover md:col-span-2" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=85&w=900" alt="Grilled dish served at the restaurant">
+                    <img class="h-72 w-full rounded-lg object-cover" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=85&w=700" alt="Colorful dinner plate">
+                    <img class="h-72 w-full rounded-lg object-cover" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=85&w=700" alt="Restaurant dining room">
+                    <img class="h-72 w-full rounded-lg object-cover" src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&q=85&w=700" alt="Fresh seafood plate">
+                    <img class="h-72 w-full rounded-lg object-cover md:col-span-3" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=85&w=1200" alt="Chef preparing food in kitchen">
+                </div>
+            </div>
+        </section>
+
+        <section id="booking" class="bg-[var(--leaf)] px-5 py-20 text-white">
+            <div class="mx-auto grid max-w-7xl gap-10 md:grid-cols-[.85fr_1.15fr] md:items-center">
+                <div>
+                    <p class="text-sm font-bold uppercase tracking-widest text-white/70">Reservations</p>
+                    <h2 class="mt-2 text-4xl font-extrabold md:text-5xl">Book your table</h2>
+                    <p class="mt-5 leading-8 text-white/80">Reserve a table for family dinners, small celebrations, and relaxed nights out. We will confirm your request by phone or WhatsApp.</p>
+                    <div class="mt-8 space-y-3 text-white/90">
+                        <p class="flex items-center gap-3"><i data-lucide="map-pin" class="h-5 w-5 text-[var(--gold)]"></i>Kinniya, Sri Lanka</p>
+                        <p class="flex items-center gap-3"><i data-lucide="phone" class="h-5 w-5 text-[var(--gold)]"></i>+94 76 435 6127</p>
+                        <p class="flex items-center gap-3"><i data-lucide="clock" class="h-5 w-5 text-[var(--gold)]"></i>Open daily, 11:00 AM - 10:30 PM</p>
+                    </div>
+                </div>
+                <form class="rounded-lg bg-white p-6 text-stone-950 shadow-2xl" onsubmit="event.preventDefault(); showToast();">
+                    <div class="grid gap-4 md:grid-cols-2">
+                        <label class="grid gap-2 text-sm font-bold">Name<input required class="rounded-md border border-stone-300 px-4 py-3 font-medium outline-none focus:border-[var(--gold)]" type="text" placeholder="Your name"></label>
+                        <label class="grid gap-2 text-sm font-bold">Phone<input required class="rounded-md border border-stone-300 px-4 py-3 font-medium outline-none focus:border-[var(--gold)]" type="tel" placeholder="+94..."></label>
+                        <label class="grid gap-2 text-sm font-bold">Date<input required class="rounded-md border border-stone-300 px-4 py-3 font-medium outline-none focus:border-[var(--gold)]" type="date"></label>
+                        <label class="grid gap-2 text-sm font-bold">Guests<input required min="1" max="20" class="rounded-md border border-stone-300 px-4 py-3 font-medium outline-none focus:border-[var(--gold)]" type="number" value="2"></label>
+                    </div>
+                    <label class="mt-4 grid gap-2 text-sm font-bold">Message<textarea class="min-h-28 rounded-md border border-stone-300 px-4 py-3 font-medium outline-none focus:border-[var(--gold)]" placeholder="Any special request?"></textarea></label>
+                    <button class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-[var(--ink)] px-6 py-4 font-extrabold text-white" type="submit">
+                        <i data-lucide="send" class="h-5 w-5"></i>
+                        Send Reservation
+                    </button>
+                    <p id="toast" class="mt-4 hidden rounded-md bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-800">Thank you. Your reservation request is ready.</p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-stone-950 px-5 py-12 text-white">
+        <div class="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">
+            <div>
+                <h3 class="text-2xl font-extrabold">Haytham Kitchen</h3>
+                <p class="mt-3 max-w-sm text-sm leading-6 text-white/60">Fresh food, warm service, and a table worth returning to.</p>
+            </div>
+            <div>
+                <h4 class="font-bold uppercase tracking-widest text-white/50">Contact</h4>
+                <p class="mt-3 text-sm text-white/75">Kinniya, Sri Lanka</p>
+                <p class="mt-2 text-sm text-white/75">+94 76 435 6127</p>
+            </div>
+            <div>
+                <h4 class="font-bold uppercase tracking-widest text-white/50">Follow</h4>
+                <div class="mt-4 flex gap-3">
+                    <a class="rounded-full border border-white/20 p-3" href="#" aria-label="Instagram"><i data-lucide="instagram" class="h-5 w-5"></i></a>
+                    <a class="rounded-full border border-white/20 p-3" href="#" aria-label="Facebook"><i data-lucide="facebook" class="h-5 w-5"></i></a>
+                    <a class="rounded-full border border-white/20 p-3" href="#" aria-label="Twitter"><i data-lucide="twitter" class="h-5 w-5"></i></a>
+                </div>
+            </div>
+        </div>
+        <p class="mx-auto mt-10 max-w-7xl border-t border-white/10 pt-6 text-xs font-semibold uppercase tracking-widest text-white/40">&copy; 2026 Haytham Kitchen. All rights reserved.</p>
+    </footer>
+
+    <a href="https://wa.me/94764356127" class="floating-whatsapp" target="_blank" rel="noreferrer" aria-label="Message Haytham Kitchen on WhatsApp">
+        <i data-lucide="message-circle" class="h-6 w-6"></i>
+    </a>
+
+    <script>
+        const menuItems = [
+            { name: "Charcoal Chicken Kottu", price: "LKR 1,450", category: "mains", image: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&q=85&w=700", description: "Chopped rotti, grilled chicken, vegetables, egg, and house spice mix." },
+            { name: "Lagoon Prawn Curry", price: "LKR 2,250", category: "mains", image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&q=85&w=700", description: "Coconut curry with prawns, curry leaves, and steamed samba rice." },
+            { name: "Mixed Grill Platter", price: "LKR 3,800", category: "mains", image: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&q=85&w=700", description: "Chicken, beef, prawns, flatbread, salad, and signature dips." },
+            { name: "Mint Lime Cooler", price: "LKR 650", category: "drinks", image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=85&w=700", description: "Fresh lime, mint, crushed ice, and a bright citrus finish." },
+            { name: "Mango Lassi", price: "LKR 750", category: "drinks", image: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?auto=format&fit=crop&q=85&w=700", description: "Creamy yogurt drink with ripe mango and cardamom." },
+            { name: "Watalappam Slice", price: "LKR 590", category: "desserts", image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&q=85&w=700", description: "Coconut custard with jaggery, cashew, and gentle spice." }
+        ];
+
+        const menuGrid = document.getElementById("menuGrid");
+        const filterButtons = document.querySelectorAll(".filter");
+
+        function renderMenu(category = "all") {
+            const visibleItems = category === "all" ? menuItems : menuItems.filter((item) => item.category === category);
+            menuGrid.innerHTML = visibleItems.map((item) => `
+                <article class="menu-card overflow-hidden rounded-lg bg-white shadow-sm">
+                    <img class="h-56 w-full object-cover" src="${item.image}" alt="${item.name}">
+                    <div class="p-5">
+                        <div class="flex items-start justify-between gap-4">
+                            <h3 class="text-xl font-extrabold">${item.name}</h3>
+                            <p class="whitespace-nowrap font-extrabold text-[var(--clay)]">${item.price}</p>
+                        </div>
+                        <p class="mt-3 text-sm leading-6 text-stone-600">${item.description}</p>
+                    </div>
+                </article>
+            `).join("");
+        }
+
+        filterButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                filterButtons.forEach((item) => {
+                    item.classList.remove("bg-[var(--ink)]", "text-white");
+                    item.classList.add("border", "border-stone-300");
+                });
+                button.classList.add("bg-[var(--ink)]", "text-white");
+                button.classList.remove("border", "border-stone-300");
+                renderMenu(button.dataset.filter);
+            });
+        });
+
+        document.getElementById("menuButton").addEventListener("click", () => {
+            document.getElementById("mobileMenu").classList.toggle("hidden");
+        });
+
+        function showToast() {
+            document.getElementById("toast").classList.remove("hidden");
+        }
+
+        renderMenu();
+        lucide.createIcons();
+    </script>
+</body>
+</html>
